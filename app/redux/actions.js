@@ -29,3 +29,7 @@ export function updatePeopleAction(people) {
 export function deletePeopleAction(people) {
   return { type: 'DELETE_PEOPLE', payload: people }
 }
+
+export function loginAction(user) {
+  return { type: 'LOGIN', payload: user }
+}

@@ -2,22 +2,21 @@ import React from 'react'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
 import axios from "axios";
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router';
+import { withRouter } from 'react-router'
 
 import { login } from '../../redux/api.js'
 import FormContainer from "./FormContainer.jsx";
 import LoginForm from "../presentational/Login.jsx";
 
-
 const loginContainer = props => {
-  const { handleSubmit, pristine, reset, submitting, invalid, logUserIn } = props
+  const { handleSubmit, pristine, reset, submitting, invalid, logUserIn, router  } = props
   const submit = (values) => {
-    return login(values)
+    return logUserIn(values)
       .then(res => {
-        logUserIn(res)
-        browserHistory.push('/tasks')
+        router.push('/tasks')
       })
       .catch(err => {
+        console.log(err)
         throw new SubmissionError({ _error: 'Login failed!' })
       })
   }
@@ -31,7 +30,7 @@ const loginContainer = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logUserIn: (payload) => dispatch({ type: 'LOGIN', payload })
+    logUserIn: (payload) => dispatch(login(payload))
   }
 }
-export default connect(null, mapDispatchToProps)(loginContainer)
+export default connect(null, mapDispatchToProps)(withRouter(loginContainer))

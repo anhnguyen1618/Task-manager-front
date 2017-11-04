@@ -20,8 +20,11 @@ module.exports = merge({
     watchOptions: { poll: true, ignored: /node_modules/ },
     proxy: {
       '/api': {
-        target: 'http://localhost:8080/api',
-        secure: false
+        target: 'http://localhost:8080',
+        secure: false,
+        pathRewrite: {
+          '/api' : ''
+        }
       }
     }
   },

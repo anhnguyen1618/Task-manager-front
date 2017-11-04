@@ -1,6 +1,9 @@
 import axios from 'axios'
+import { loginAction } from './actions'
 
 const ROOT = '/api'
+
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
 
 export function fetchTasks() {
   return axios.get(`${ROOT}/task/get`)
@@ -36,6 +39,11 @@ export function deletePeople(username) {
 
 export function login(data) {
   return axios.post(`${ROOT}/login`, data)
+    .then(res => {
+      localStorage.setItem('token', res.headers['Authorization']);
+      console.log(loginAction(res.data))
+      return loginAction(res.data);
+    })
 }
 
 export function logout() {
