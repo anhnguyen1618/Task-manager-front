@@ -1,0 +1,90 @@
+.sidePanel {
+    background-color: #005a7b;
+    height: 100vh;
+    width: 40%;
+    position: fixed;
+    top: 0px;
+    right: 0px !important;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 2;
+    filter: blur(0px) !important;
+    color: white;
+    .panel-header {
+        padding: 0px 35px 10px 35px;
+        width: 100%;
+        border-bottom: 2px solid #004862;
+    }
+    .panel-content {
+        padding: 20px 35px;
+        overflow-y: scroll;
+        height: 75%;
+        hr {
+            border-color: #004862;
+            height: 2px;
+        }
+        input,
+        textarea,
+        select {
+            width: 100%;
+            height: 30.4px;
+            padding: 5px 12px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-width: 0px;
+            option {
+                background-color: rgba(0, 72, 98, 1);
+                padding: 20px !important;
+            }
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            box-shadow: inset 0 0 0 2px #00a9d4, 0 0 0 1px rgba(0, 0, 0, .1);
+        }
+        textarea {
+            height: 150px;
+        }
+        .row {
+            margin-top: 20px;
+        }
+        label {
+            margin-top: 5px;
+        }
+    }
+    .panel-footer {
+        border-top-width: 0px;
+        height: 10%;
+        width: 100%;
+        background-color: #004862;
+        padding-left: 35px;
+        padding-right: 35px;
+        display: table;
+        position: fixed;
+        bottom: 0px;
+        .button-group {
+            display: table-cell;
+            vertical-align: middle;
+            button {
+                min-width: 80px;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.shown {
+    transform: translateX(0%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.tint-layer {
+    z-index: 1;
+    content: "";
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    opacity: 0.3
+}

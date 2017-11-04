@@ -1,0 +1,91 @@
+body {
+    background-color: #000;
+    background-image: radial-gradient(circle, rgba(123, 6, 99, 0), rgba(123, 6, 99, .2)), linear-gradient(rgba(0, 169, 212, .5), rgba(0, 169, 212, .25));
+    #outer {
+        display: table;
+        width: 100%;
+        height: 100vh;
+        color: #ffffff;
+        #inner {
+            display: table-cell;
+            vertical-align: middle;
+            h2 {
+                padding: 0px;
+            }
+            form {
+                background-color: #005a7b;
+                width: 650px;
+                padding: 20px 0px 40px 0px;
+                border-bottom-width: 5px;
+                border-bottom-style: solid;
+                display: block;
+                overflow: hidden;
+                .error {
+                    color: #e53935;
+                }
+                .control-input {
+                    width: 70% !important;
+                }
+                .styles-radio-group {
+                    margin-left: 14.5% !important;
+                    margin-top: 20px !important;
+                    text-align: left;
+                }
+                .styles-radio-group {
+                    color: white !important;
+                    label {
+                        color: #00bcd4 !important
+                    }
+                }
+                input {
+                    color: white !important;
+                }
+                .button-group {
+                    margin-right: 15%;
+                }
+                .btn {
+                    margin-top: 20px;
+                    padding-left: 30px;
+                    padding-right: 30px;
+                    padding: 10px 30px;
+                    float: right;
+                }
+                .btn-success {
+                    margin-right: 10px;
+                    background-color: #009f80;
+                    border: none;
+                }
+                .btn-primary {
+                    background-color: #00ACC1;
+                }
+            }
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: #00a9d4;
+    -webkit-box-shadow: inset 0 0 6px #00a9d4;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+    background: #00a9d4;
+}
