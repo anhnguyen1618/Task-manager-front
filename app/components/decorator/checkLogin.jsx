@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { browserHistory } from 'react-router';
 
-import { getUser } from '../../redux/taskSelector.js'
+import { getCurrentUser } from '../../redux/selectors/users'
 
 export default function(App, param = 'tasks') {
   class SecuredApp extends Component {
@@ -10,7 +10,7 @@ export default function(App, param = 'tasks') {
     }
 
     componentWillMount() {
-      const user = getUser()
+      const user = getCurrentUser()
       if (!user) {
         browserHistory.push('/')
         return null

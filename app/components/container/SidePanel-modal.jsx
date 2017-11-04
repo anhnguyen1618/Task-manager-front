@@ -8,7 +8,7 @@ import uuid from 'uuid/v4'
 import { addTasks, updateTasks, deleteTask, loadTasks } from "../../redux/actions.js";
 import { addTask, fetchTasks, modifyTask, eraseTask } from "../../redux/api.js";
 
-import { getTaskbyID } from '../../redux/taskSelector.js'
+import { getTaskbyID } from '../../redux/selectors/tasks'
 
 import Form from "./Form.jsx";
 

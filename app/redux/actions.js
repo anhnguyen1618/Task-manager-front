@@ -1,4 +1,4 @@
-export function loadTasks(tasks) {
+export function loadTasksAction(tasks) {
   return { type: 'LOAD_TASKS', payload: tasks }
 }
 
@@ -14,7 +14,7 @@ export function deleteTask(task) {
   return { type: 'DELETE_TASK', payload: task }
 }
 
-export function loadPeople(people) {
+export function loadPeopleAction(people) {
   return { type: 'LOAD_PEOPLE', payload: people }
 }
 

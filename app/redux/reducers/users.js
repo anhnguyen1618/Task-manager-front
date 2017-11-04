@@ -24,7 +24,7 @@ const currentUser = (state = null, action) => {
   return state
 }
 
-const sortBy = (sortBy = 'name', action) => {
+const sortCategory = (sortBy = 'name', action) => {
   return (action.type === 'CHANGE_SORT_CATEGORY' ? action.sortBy : sortBy)
 }
 
@@ -35,6 +35,6 @@ const sortOrder = (sortOrder = 'ascending', action) => {
 export default combineReducers({
   data,
   currentUser,
-  sortBy,
+  sortCategory,
   sortOrder
 })

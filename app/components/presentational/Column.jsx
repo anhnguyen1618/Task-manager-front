@@ -4,7 +4,7 @@ import { Draggable, Droppable } from 'react-drag-and-drop'
 
 import Ticket from "./Ticket.jsx";
 import { updateTasks } from '../../redux/actions.js'
-import { getTaskbyID } from '../../redux/taskSelector.js'
+import { getTaskbyID } from '../../redux/selectors/tasks'
 import { modifyTask } from "../../redux/api.js";
 
 const Column = (props) => {
@@ -39,7 +39,7 @@ const Column = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.users.currentUser
   }
 }
 

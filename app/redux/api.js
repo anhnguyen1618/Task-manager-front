@@ -1,12 +1,23 @@
 import axios from 'axios'
-import { loginAction } from './actions'
+import { loginAction, loadTasksAction, loadPeopleAction } from './actions'
 
 const ROOT = '/api'
 
-axios.defaults.headers.common['Authorization'] = localStorage.getItem('token');
+const getToken = () => localStorage.getItem('token')
+
+axios.defaults.headers.common['Authorization'] = getToken();
+
+axios.interceptors.request.use(config => {
+  const token = getToken()
+  if (token) {
+    config.headers['Authorization'] = token
+  }
+  return config
+})
 
 export function fetchTasks() {
-  return axios.get(`${ROOT}/task/get`)
+  return axios.get(`${ROOT}/tasks`)
+    .then(res => loadTasksAction(res.data))
 }
 
 export function addTask(data) {
@@ -22,7 +33,8 @@ export function eraseTask(id) {
 }
 
 export function fetchPeople() {
-  return axios.get(`${ROOT}/employee/getall`)
+  return axios.get(`${ROOT}/users`)
+    .then(res => loadPeopleAction(res.data))
 }
 
 export function createPeople(data) {
@@ -40,8 +52,7 @@ export function deletePeople(username) {
 export function login(data) {
   return axios.post(`${ROOT}/login`, data)
     .then(res => {
-      localStorage.setItem('token', res.headers['Authorization']);
-      console.log(loginAction(res.data))
+      localStorage.setItem('token', res.headers['authorization'])
       return loginAction(res.data);
     })
 }
@@ -51,5 +62,8 @@ export function logout() {
 }
 
 export function checkUser(data) {
-  return axios.get(`${ROOT}/employee/getemp`)
+  return axios.get(`${ROOT}/currentUser`)
+    .then(res => {
+      return loginAction(res.data)
+    })
 }

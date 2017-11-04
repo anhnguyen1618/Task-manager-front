@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Main from "../presentational/Main.jsx";
+import Main from "./Main.jsx";
 
 const Content = (props) => {
   const { sidePaneltriggered } = props

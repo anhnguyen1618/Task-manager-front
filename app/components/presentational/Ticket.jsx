@@ -14,7 +14,7 @@ const Ticket = (props) => {
 }
 
 const mapStateToProps = (state, { assignee }) => {
-  const person = state.people.find(person => person.username === assignee)
+  const person = state.users.data.find(person => person.username === assignee)
   return {
     avatar_url: person && person.avatar_url ? person.avatar_url : 'https://pbs.twimg.com/profile_images/1980294624/DJT_Headshot_V2_400x400.jpg'
   }

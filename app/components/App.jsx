@@ -9,9 +9,8 @@ import { checkUser } from "../redux/api.js";
 import checkLogin from "./decorator/checkLogin.jsx"
 import Login from './container/LoginContainer.jsx'
 import Content from "./container/Content.jsx"
-import Register from './container/RegisterContainer.jsx'
+import Main from "./container/Main.jsx";
 
-import Main from "./presentational/Main.jsx";
 import SidePanel from "./presentational/SidePanel.jsx";
 import SideModal from './container/SidePanel-modal.jsx';
 import Table from './table/Staff.jsx';
@@ -54,9 +53,9 @@ export class SecureApp extends React.Component {
     }
   }
   componentDidMount() {
-    checkUser()
+    const { fetchCurrentUser } = this.props
+    fetchCurrentUser()
       .then(res => {
-        this.props.logUserIn(res)
         this.setState({ isLoading: false });
       })
       .catch(err => {
@@ -84,7 +83,7 @@ export class SecureApp extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logUserIn: (payload) => dispatch({ type: 'LOGIN', payload })
+    fetchCurrentUser: () => dispatch(checkUser())
   }
 }
 
