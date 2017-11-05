@@ -63,7 +63,7 @@
 }
 
 .top-section {
-    min-height: 17vh;
+    // min-height: 17vh;
     width: 100%;
     color: white;
     background-color: rgba(0, 169, 212, .2);
@@ -72,17 +72,7 @@
         margin-bottom: 20px;
         text-align: center;
     }
-    span {
-        padding: 10px;
-        cursor: pointer;
-    }
-    .filterName {
-        border-radius: 3px;
-        border: solid 2px white;
-    }
-    .col-md-10 {
-        margin-top: 11px;
-    }
+
     nav {
         background-color: #203149;
         border-bottom: 1px solid #000;
@@ -99,7 +89,31 @@
         }
     }
     .filter {
-        margin-top: 14px;
+        &__container {
+            display: flex;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        &__title {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        &__item {
+            margin-left: 7px;
+            margin-right: 7px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        &__highlight {
+            border-radius: 3px;
+            border: solid 2px white;
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { loginAction, loadTasksAction, loadPeopleAction } from './actions'
+import { loginAction, loadTasksAction, loadPeopleAction, addTasksAction,
+        updateTasksAction, deleteTaskAction } from './actions'
 
 const ROOT = '/api'
 
@@ -21,15 +22,18 @@ export function fetchTasks() {
 }
 
 export function addTask(data) {
-  return axios.post(`${ROOT}/task/create`, data)
+  return axios.post(`${ROOT}/tasks`, data)
+    .then(res => addTasksAction(res.data))
 }
 
 export function modifyTask(data) {
-  return axios.put(`${ROOT}/task/update`, data)
+  return axios.put(`${ROOT}/tasks/${data.id}`, data)
+    .then(res => updateTasksAction(res.data))
 }
 
 export function eraseTask(id) {
-  return axios.delete(`${ROOT}/task/delete?id=${id}`)
+  return axios.delete(`${ROOT}/tasks/${id}`)
+    .then(res => deleteTaskAction({id}))
 }
 
 export function fetchPeople() {

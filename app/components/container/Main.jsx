@@ -26,7 +26,7 @@ class Main extends React.Component {
     loadTasks().then(() => this.setState({ isFetchingTasks: false }))
   }
 
-  changeFilter = (name) => () => {
+  changeFilter = (name) => {
     this.setState({ filterName: name });
   }
 
@@ -62,12 +62,20 @@ class Main extends React.Component {
       			</div>
       		</nav>
 
-          <div className="container filter">
-            <Col sm={2}><h4>Quick filter:</h4></Col>
-            <Row className="col-md-10">
-            <Col sm={1} onClick={this.changeFilter('')}><span className={!filterName? "filterName": ""}>All</span></Col>
-            {users.map((person, index) => <Col sm={1} onClick={this.changeFilter(person)} key={index}> <span className={person == filterName ? "filterName": ""}>{person.userName}</span></Col>)}
-            </Row>
+          <div className="container filter__container">
+            <div className="filter__title"><h4>Quick filter:</h4></div>
+            <div 
+              className={!filterName ? "filter__highlight filter__item": "filter__item"}
+              onClick={() => this.changeFilter('')}>
+              All
+            </div>
+            {users.map(person => (
+              <div 
+                className={person.userName == filterName ? "filter__highlight filter__item": "filter__item"}
+                onClick={() => this.changeFilter(person.userName)}
+                key={person.userName}>
+                {person.userName}
+              </div>))}
           </div>
       		
       	</div>
@@ -79,7 +87,6 @@ class Main extends React.Component {
 
 
 const mapStateToProps = (state) => {
-  console.log("rersrsdf",getCurrentUser(state))
   return {
     tasks: getAllTasks(state),
     currentUser: getCurrentUser(state),

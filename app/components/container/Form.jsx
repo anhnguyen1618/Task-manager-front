@@ -31,13 +31,13 @@ const Form = (props) => {
 				<hr/>
 				<h4>People</h4>
 				<Row>
-					<Col sm={2}>
+					<Col md={2}>
 						<label>Assignee:</label>
 					</Col>
-		          	<Col sm={8}>
+		          	<Col md={8}>
 			          	<Field name="assignee" component="select">
-				            {employees.map(({username}, index) =>
-				              <option value={username} key={index}>{username}</option>)}
+				            {employees.map(({userName}) =>
+				              <option value={userName} key={userName}>{userName}</option>)}
 			          	</Field>
 		          	</Col>
 			    </Row>
@@ -71,7 +71,7 @@ const detailForm = reduxForm({
 
 const mapStateToProps = (state) => {
   return {
-    employees: state.people
+    employees: state.users.data
   }
 }
 

@@ -2,16 +2,16 @@ export function loadTasksAction(tasks) {
   return { type: 'LOAD_TASKS', payload: tasks }
 }
 
-export function addTasks(tasks) {
+export function addTasksAction(tasks) {
   return { type: 'ADD_TASKS', payload: tasks }
 }
 
-export function updateTasks(task) {
+export function updateTasksAction(task) {
   return { type: 'UPDATE_TASKS', payload: task }
 }
 
-export function deleteTask(task) {
-  return { type: 'DELETE_TASK', payload: task }
+export function deleteTaskAction(id) {
+  return { type: 'DELETE_TASK', payload: id }
 }
 
 export function loadPeopleAction(people) {

@@ -13,7 +13,7 @@ const Content = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    sidePaneltriggered: state.sidePaneltriggered
+    sidePaneltriggered: state.ui.sidePaneltriggered
   }
 }
 

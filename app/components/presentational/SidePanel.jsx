@@ -20,7 +20,7 @@ const SidePanel = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    sidePaneltriggered: state.sidePaneltriggered
+    sidePaneltriggered: state.ui.sidePaneltriggered
   };
 }
 

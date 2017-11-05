@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Draggable, Droppable } from 'react-drag-and-drop'
 
 import Ticket from "./Ticket.jsx";
-import { updateTasks } from '../../redux/actions.js'
 import { getTaskbyID } from '../../redux/selectors/tasks'
 import { modifyTask } from "../../redux/api.js";
 
@@ -12,12 +11,11 @@ const Column = (props) => {
   console.log(tasks);
   const filteredTasks = tasks.filter(task => task.status === category)
 
-  const isAdmin = user.role === 'ROLE_ADMIN'
+  const isAdmin = user.role === 'ADMIN'
 
   const handleDrop = ({ task: id }) => {
-    const updatedTask = Object.assign({}, getTaskbyID(id), { status: category });
+    const updatedTask = Object.assign({}, props.getTaskbyID(id), { status: category });
     changeCategory(updatedTask)
-    modifyTask(updatedTask)
   }
   return (
     <div className="col-sm-3 ticket">
@@ -39,7 +37,8 @@ const Column = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.users.currentUser
+    user: state.users.currentUser,
+    getTaskbyID: id => getTaskbyID(state, id)
   }
 }
 
@@ -50,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: "SHOW_SIDE_PANEL" });
     },
     changeCategory: (task) => {
-      dispatch(updateTasks(task))
+      dispatch(modifyTask(task))
     }
   }
 }

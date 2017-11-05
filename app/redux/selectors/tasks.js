@@ -1,4 +1,6 @@
 
+import store from '../store'
+
 export function getAllTasks(state) {
   return state.tasks.data
 }

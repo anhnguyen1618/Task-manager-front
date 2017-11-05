@@ -5,7 +5,7 @@ const data = (state = [], action) => {
     case 'LOAD_TASKS':
       return action.payload
     case 'ADD_TASKS':
-      return state.concat(action.payload)
+      return state.concat([action.payload])
     case 'UPDATE_TASKS':
       const newTasks = state.map(task => task.id === action.payload.id ? action.payload : task)
       return newTasks

@@ -5,7 +5,6 @@ import { Row, Col } from 'react-bootstrap'
 import { submit } from 'redux-form'
 import uuid from 'uuid/v4'
 
-import { addTasks, updateTasks, deleteTask, loadTasks } from "../../redux/actions.js";
 import { addTask, fetchTasks, modifyTask, eraseTask } from "../../redux/api.js";
 
 import { getTaskbyID } from '../../redux/selectors/tasks'
@@ -27,22 +26,20 @@ class SideModal extends React.Component {
 
   onSave = (values) => {
     if (this.isAdding) {
-      values.assignor = this.props.user.username
-      if (!values.assignee) values.assignee = this.props.user.username
-      console.log(values);
-      addTask(values)
+      values.assignor = this.props.user.userName
+
+      this.props.addTask(values)
         .then(res => {
-          this.props.refreshTasks()
           this.props.hideSidePanel()
         })
         .catch(err => {
           console.log(err);
         })
     } else {
-      modifyTask(values)
+      this.props.updateTask(values)
         .then(res => {
-          this.props.updateTask(values)
           this.setState({ isEditing: false })
+          this.props.hideSidePanel()
         })
     }
   }
@@ -76,14 +73,12 @@ class SideModal extends React.Component {
     const { isEditing } = this.state
     const { isAdding } = this
     const showForm = isEditing || isAdding
-    const isAdmin = userRole === 'ROLE_ADMIN'
+    const isAdmin = userRole === 'ADMIN'
     const removeTask = () => {
-      eraseTask(initialValues.id)
-        .then(res => {
-          hideSidePanel()
-          deleteTask(initialValues)
-        })
+      hideSidePanel()
+      deleteTask(initialValues.id)
     }
+
     return (
       <div>
 	    	<div className="panel-header">
@@ -114,34 +109,19 @@ class SideModal extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    initialValues: getTaskbyID(state.selectedTask),
-    user: state.people[0],
-    userRole: state.user.role
+    initialValues: getTaskbyID(state, state.tasks.selectedTask),
+    user: state.users.currentUser,
+    userRole: state.users.currentUser.role
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    refreshTasks: () => {
-      fetchTasks().then(({ data }) => {
-        dispatch(loadTasks(data))
-      })
-    },
-    hideSidePanel: () => {
-      dispatch({ type: "HIDE_SIDE_PANEL" })
-    },
-    addTask: (task) => {
-      dispatch(addTasks(task))
-    },
-    updateTask: (task) => {
-      dispatch(updateTasks(task))
-    },
-    deleteTask: (task) => {
-      dispatch(deleteTask(task))
-    },
-    handleSave: () => {
-      dispatch(submit('detailForm'))
-    }
+    hideSidePanel: () => dispatch({ type: "HIDE_SIDE_PANEL" }),
+    addTask: (task) => dispatch(addTask(task)),
+    updateTask: (task) => dispatch(modifyTask(task)),
+    deleteTask: (task) => dispatch(eraseTask(task)),
+    handleSave: () => dispatch(submit('detailForm'))
   }
 }
 
