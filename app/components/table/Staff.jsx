@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
 import Form from "./Form.jsx";
-import Confirmation from "./Confirmation.jsx";
 import TableWrapper from "./TableWrapper.jsx";
 
 import { fetchPeople } from '../../redux/api.js';
@@ -19,28 +18,23 @@ export class Staff extends React.Component {
 
   render() {
     return (
-      <div className="container" id="staff">
-			<Form></Form>
-			<Confirmation/>
-			<TableWrapper/>
-		</div>
+    <div className="container" id="staff">
+      <Form></Form>
+      <TableWrapper/>
+    </div>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    people: state.people
+    people: state.users.data
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPeople: () => {
-      return fetchPeople().then(({ data }) => {
-        dispatch(loadPeople(data))
-      })
-    }
+    fetchPeople: () => dispatch(fetchPeople())
   }
 }
 

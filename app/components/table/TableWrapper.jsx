@@ -5,7 +5,7 @@ import Table from "./Table.jsx";
 
 class TableWrapper extends React.Component {
   static propTypes = {
-    sortBy: React.PropTypes.string.isRequired,
+    sortCategory: React.PropTypes.string.isRequired,
     sortOrder: React.PropTypes.string.isRequired,
     people: React.PropTypes.array.isRequired
   };
@@ -16,35 +16,31 @@ class TableWrapper extends React.Component {
 
 
   render() {
-    const { people, sortBy, sortOrder } = this.props
-    const list = sortPeople(people, sortBy, sortOrder)
+    const { people, sortCategory, sortOrder } = this.props
+    const list = sortPeople(people, sortCategory, sortOrder)
     return <div>
                 <Table paginatedPeople={list}/>          
             </div>
   }
 }
-const sortPeople = (people, sortBy, sortOrder) => {
+const sortPeople = (people, sortCategory, sortOrder) => {
   /*
     arguments: list of people, sort category, sort order
     return list after being shorted
   */
   people.sort((a, b) => {
-    const sortValueAscending = a[sortBy].localeCompare(b[sortBy])
+    const sortValueAscending = a[sortCategory].localeCompare(b[sortCategory])
     return sortOrder === "ascending" ? sortValueAscending : -sortValueAscending;
   })
   return people;
 }
 
 const mapStateToProps = (state) => {
+  const { sortCategory, sortOrder, data: people, currentUser } = state.users;
   return {
-    sortBy: state.sortBy,
-    sortOrder: state.sortOrder,
-    people: state.people
-      .filter(person => person.role !== 'ROLE_HR' && person.username !== state.user.username)
-      .map(person => {
-        const newPerson = Object.assign({ name: person.username }, person)
-        return newPerson
-      })
+    sortCategory,
+    sortOrder,
+    people: people.filter(person => person.userName !== currentUser.userName)
   }
 }
 

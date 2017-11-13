@@ -11,12 +11,8 @@ export default function(App, param = 'tasks') {
 
     componentWillMount() {
       const user = getCurrentUser()
+      console.log(user)
       if (!user) {
-        browserHistory.push('/')
-        return null
-      }
-
-      if (param === 'employee' && user.role !== 'ROLE_HR') {
         browserHistory.push('/')
         return null
       }

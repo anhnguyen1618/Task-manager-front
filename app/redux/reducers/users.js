@@ -24,7 +24,7 @@ const currentUser = (state = null, action) => {
   return state
 }
 
-const sortCategory = (sortBy = 'name', action) => {
+const sortCategory = (sortBy = 'userName', action) => {
   return (action.type === 'CHANGE_SORT_CATEGORY' ? action.sortBy : sortBy)
 }
 

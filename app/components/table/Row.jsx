@@ -18,21 +18,21 @@ export class Row extends React.Component {
   constructor(props) {
     super(props);
     this.state = Object.assign({}, this.props.man, { isEdited: false, isFocused: null });
-    const { name, email, role } = this.props.man;
-    this.infoObj = { name, email, role };
+    const { userName, email, role } = this.props.man;
+    this.infoObj = { userName, email, role };
   }
 
   render() {
-    const { isEdited, name, email, role, isFocused } = this.state;
+    const { isEdited, userName, email, role, isFocused } = this.state;
     const passProps = { onEdit: this.onEdit, isEdited, isFocused };
-    const infos = [{ type: "name", value: name }, { type: "email", value: email }, { type: "role", value: role }];
+    const infos = [{ type: "userName", value: userName }, { type: "email", value: email }, { type: "role", value: role }];
     return (
       <tr>
             {infos.map((info, index) => <Box key={index} {...info} {...passProps} updateInfo={this.updateInfo(info.type)}/>)}
             <td id="editor">
                 <div>
-                    <span onClick={this.onEdit("name")} className={"glyphicon glyphicon-pencil "+(isEdited ? "isEdited" : null)}/>
-                    <span onClick={() => this.props.deletePeople(name)} className="glyphicon glyphicon-remove"/>  
+                    <span onClick={this.onEdit("userName")} className={"glyphicon glyphicon-pencil "+(isEdited ? "isEdited" : null)}/>
+                    <span onClick={() => this.props.deletePeople(userName)} className="glyphicon glyphicon-remove"/>  
                 </div>      
             </td>
         </tr>
@@ -46,8 +46,8 @@ export class Row extends React.Component {
       this.props.updatePeople(this.infoObj);
     } else {
       // render input fields when switching to edit mode, focus on the input that is clicked
-      const { name, email, role } = this.state;
-      this.infoObj = { name, email, role };
+      const { userName, email, role } = this.state;
+      this.infoObj = { userName, email, role };
       this.setState(Object.assign({}, this.state, { isEdited: true, isFocused }));
     }
   }
@@ -66,7 +66,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: "SHOW_CONFIRM" });
     },
     updatePeople: (payload) => {
-      payload.username = payload.name
+      payload.useruserName = payload.userName
       updatePeople(payload)
         .then(res => {
           dispatch(updatePeopleAction(payload))
