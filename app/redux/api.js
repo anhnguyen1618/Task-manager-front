@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { loginAction, loadTasksAction, loadPeopleAction, addTasksAction,
-        updateTasksAction, deleteTaskAction } from './actions'
+        updateTasksAction, deleteTaskAction, addPeopleAction } from './actions'
 
 const ROOT = '/api'
 
@@ -42,7 +42,8 @@ export function fetchPeople() {
 }
 
 export function createPeople(data) {
-  return axios.post(`${ROOT}/employee/create`, data)
+  return axios.post(`${ROOT}/signUp`, data)
+    .then(res => addPeopleAction(res.data))
 }
 
 export function updatePeople(data) {

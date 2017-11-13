@@ -5,14 +5,16 @@ import Row from './Row.jsx';
 import uuid from "uuid/v4";
 
 const Table = ({ paginatedPeople }) => {
-  return <div className="row">
+  return (
+		<div className="row">
 			<table className="table table-striped">
-	        	<TableHeader/>
-			    <tbody>
-				    {paginatedPeople.map(man =><Row key={man.username} man={man}/>) } 
-			    </tbody>
-		    </table>
-	   	</div>
+				<TableHeader/>
+				<tbody>
+					{paginatedPeople.map(man =><Row key={man.userName} man={man}/>) } 
+				</tbody>
+			</table>
+		</div>
+	)
 }
 
 export default Table;

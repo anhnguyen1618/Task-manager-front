@@ -11,11 +11,11 @@ class Form extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { name: "", email: "", role: "ROLE_ADMIN", password: "" };
+    this.state = { userName: "", email: "", role: "ROLE_ADMIN", password: "" };
   }
 
   render() {
-    const { name, email, role, password } = this.state;
+    const { userName, email, role, password } = this.state;
     return (
       <div className="row">
             <Link to={'/tasks'} className="btn btn-primary"> Back to main page!</Link>
@@ -23,7 +23,7 @@ class Form extends React.Component {
             <form >
                 <div className="row">
                     <div className="col-xs-3">
-                        <input type="text" className="form-control" placeholder="Name" value={name} onChange={this.updateForm("name")}/>
+                        <input type="text" className="form-control" placeholder="Name" value={userName} onChange={this.updateForm("userName")}/>
                     </div>
                     
                     <div className="col-xs-3">
@@ -37,8 +37,8 @@ class Form extends React.Component {
                     
                     <div className="col-xs-2">
                         <select className="form-control" value={role} onChange={this.updateForm("role")}>
-                            <option>ROLE_ADMIN</option>
-                            <option>ROLE_USER</option>                     
+                            <option>ADMIN</option>
+                            <option>USER</option>                     
                         </select>
                     </div>
                     
@@ -58,14 +58,23 @@ class Form extends React.Component {
     newObj[key] = e.target.value;
     this.setState(Object.assign({}, this.state, newObj));
   }
+
   submit = () => {
-    if (this.state.name !== "" && this.state.password !== "" && /^\w+@\w+\.\w+$/.test(this.state.email)) {
+    const {userName, password, email} = this.state
+    if (userName !== "" && password !== "" && /^\w+@\w+\.\w+$/.test(email)) {
       //
       const newPerson = Object.assign({}, this.state)
 
-      this.props.addPerson(newPerson);
+      this.props.addPerson(newPerson)
+        .then(res => {
+          alert("Add person successfully!");
+        })
+        .catch(err => {
+          console.log(err)
+          alert("Your data is invalid")
+        })
 
-      this.setState({ name: "", email: "", role: "ROLE_ADMIN", password: "" });
+      this.setState({ userName: "", email: "", role: "ADMIN", password: "" });
     } else {
       alert("Your from is invalid!");
     }
@@ -75,15 +84,7 @@ class Form extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addPerson: (payload) => {
-      payload.username = payload.name
-      createPeople(payload)
-        .then(res => {
-          dispatch(addPeople(payload))
-          alert("Add person successfully!");
-        })
-        .catch(err => alert("Your data is invalid"))
-    }
+    addPerson: (payload) => dispatch(createPeople(payload))
   }
 }
 export default connect(null, mapDispatchToProps)(Form);

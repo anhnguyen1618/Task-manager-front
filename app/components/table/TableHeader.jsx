@@ -7,10 +7,10 @@ const TableHeader = (props) => {
   return (
     <thead>
       <tr>
-          {["Name", "Email", "role"].map((title)=>(
-            <th key={title} className={title === 'role' ? "col-md-2": 'col-md-4'}>                        
-                <span className="title" onClick={sort(sortCategory, sortOrder)}>{title}</span>    
-                { title.toLowerCase() === sortCategory
+          {["UserName", "Email", "Role"].map((title)=>(
+            <th key={title} className={title === 'Role' ? "col-md-2": 'col-md-4'}>                        
+                <span className="title" onClick={sort(sortCategory, sortOrder, title)}>{title}</span>    
+                { title.toLowerCase() === sortCategory.toLowerCase()
                   ? <span className={"glyphicon glyphicon-sort-by-attributes"+(sortOrder === "descending" ? "-alt" : "")}/>
                   : <span className="glyphicon glyphicon-align-left"></span>}                                    
             </th>
@@ -38,8 +38,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sort: (currentSortBy, currentSortOrder) => (e) => {
-      const sortCategory = e.target.innerHTML.toLowerCase();
+    sort: (currentSortBy, currentSortOrder, newCategory) => (e) => {
+      let sortCategory = newCategory.toLowerCase();
+
+      if (sortCategory == 'username') {
+        sortCategory = 'userName';
+      }
+
       if (sortCategory !== currentSortBy) {
         dispatch({ type: "CHANGE_SORT_CATEGORY", sortCategory });
       } else {

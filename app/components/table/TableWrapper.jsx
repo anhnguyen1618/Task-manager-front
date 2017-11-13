@@ -32,6 +32,7 @@ const sortPeople = (people, sortCategory, sortOrder) => {
     const sortValueAscending = a[sortCategory].localeCompare(b[sortCategory])
     return sortOrder === "ascending" ? sortValueAscending : -sortValueAscending;
   })
+
   return people;
 }
 

@@ -18,7 +18,7 @@ export function loadPeopleAction(people) {
   return { type: 'LOAD_PEOPLE', payload: people }
 }
 
-export function addPeople(people) {
+export function addPeopleAction(people) {
   return { type: 'ADD_PEOPLE', payload: people }
 }
 
