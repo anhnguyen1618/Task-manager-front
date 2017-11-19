@@ -70,7 +70,6 @@ class Form extends React.Component {
           alert("Add person successfully!");
         })
         .catch(err => {
-          console.log(err)
           alert("Your data is invalid")
         })
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import id_generator from "uuid/v4";
 import Box from './Box.jsx'
 
-import { updatePeople } from '../../redux/api.js'
+import { updatePeople, deletePeople } from '../../redux/api.js'
 import { updatePeopleAction } from '../../redux/actions.js'
 
 
@@ -61,20 +61,8 @@ export class Row extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deletePeople: (id) => {
-      dispatch({ type: "ADD_ID", id });
-      dispatch({ type: "SHOW_CONFIRM" });
-    },
-    updatePeople: (payload) => {
-      payload.useruserName = payload.userName
-      updatePeople(payload)
-        .then(res => {
-          dispatch(updatePeopleAction(payload))
-        })
-        .catch(err => {
-          alert('Cannot update')
-        })
-    }
+    deletePeople: (userName) => dispatch(deletePeople(userName)),
+    updatePeople: (payload) => dispatch(updatePeople(payload))
   }
 }
 

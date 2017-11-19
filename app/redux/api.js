@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { loginAction, loadTasksAction, loadPeopleAction, addTasksAction,
-        updateTasksAction, deleteTaskAction, addPeopleAction } from './actions'
+        updateTasksAction, deleteTaskAction, addPeopleAction,
+        deletePeopleAction, updatePeopleAction } from './actions'
 
 const ROOT = '/api'
 
@@ -47,11 +48,13 @@ export function createPeople(data) {
 }
 
 export function updatePeople(data) {
-  return axios.put(`${ROOT}/employee/update`, data)
+  return axios.put(`${ROOT}/users/${data.userName}`, data)
+    .then(res => updatePeopleAction(res.data))
 }
 
-export function deletePeople(username) {
-  return axios.delete(`${ROOT}/employee/delete?username=${username}`)
+export function deletePeople(userName) {
+  return axios.delete(`${ROOT}/users/${userName}`)
+    .then(res => deletePeopleAction({userName}))
 }
 
 export function login(data) {

@@ -7,9 +7,9 @@ const data = (state = [], action) => {
     case 'ADD_PEOPLE':
       return state.concat(action.payload)
     case 'DELETE_PEOPLE':
-      return state.filter(person => person.username !== action.payload.username)
+      return state.filter(person => person.userName !== action.payload.userName)
     case 'UPDATE_PEOPLE':
-      return state.map(person => person.username === action.payload.username ? action.payload : person)
+      return state.map(person => person.userName === action.payload.userName ? action.payload : person)
   }
   return state
 }

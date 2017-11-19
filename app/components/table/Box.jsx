@@ -28,8 +28,8 @@ const Input = ({ isFocused, type, value, updateInfo }) => {
                 autoFocus={shouldFocus} 
                 onChange={updateInfo} 
                 defaultValue={value}>
-                    <option >ROLE_ADMIN</option>
-                    <option >ROLE_USER</option>                     
+                    <option>ADMIN</option>
+                    <option>USER</option>                     
          </select>
 }
 
