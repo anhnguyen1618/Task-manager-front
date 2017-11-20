@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Draggable, Droppable } from 'react-drag-and-drop'
 
-import Ticket from "./Ticket.jsx";
+import Ticket from "../presentational/Ticket.jsx";
 import { getTaskbyID } from '../../redux/selectors/tasks'
 import { modifyTask } from "../../redux/api.js";
 

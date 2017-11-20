@@ -11,7 +11,6 @@ export default function(App, param = 'tasks') {
 
     componentWillMount() {
       const user = getCurrentUser()
-      console.log(user)
       if (!user) {
         browserHistory.push('/')
         return null

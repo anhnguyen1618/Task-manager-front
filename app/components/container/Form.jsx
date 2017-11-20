@@ -14,19 +14,20 @@ const Form = (props) => {
 				<h4>Details</h4>
 				<Row>
 					<Col sm={2}><label>Title:</label></Col>
-		          	<Col sm={8}>
-			          	<Field name="title" component="input"/>				          
-			        </Col>
-			    </Row>
-			    <Row>
-			    	<Col sm={2}><label>Status:</label></Col>
-		          	<Col sm={8}>
-			          	<Field name="status" component="select">
-				            {stages.map(status =>
-				              <option value={status} key={status}>{status}</option>)}
-			          	</Field>
-			        </Col>			    	
-			    </Row>
+					<Col sm={8}>
+						<Field name="title" component="input"/>				          
+					</Col>
+			  </Row>
+
+				<Row>
+					<Col sm={2}><label>Status:</label></Col>
+					<Col sm={8}>
+						<Field name="status" component="select">
+							{stages.map(status =>
+							<option value={status} key={status}>{status}</option>)}
+						</Field>
+					</Col>			    	
+				</Row>
 				
 				<hr/>
 				<h4>People</h4>
@@ -34,32 +35,32 @@ const Form = (props) => {
 					<Col md={2}>
 						<label>Assignee:</label>
 					</Col>
-		          	<Col md={8}>
-			          	<Field name="assignee" component="select">
-				            {employees.map(({userName}) =>
-				              <option value={userName} key={userName}>{userName}</option>)}
-			          	</Field>
-		          	</Col>
-			    </Row>
+					<Col md={8}>
+						<Field name="assignee" component="select">
+							{employees.map(({userName}) =>
+							<option value={userName} key={userName}>{userName}</option>)}
+						</Field>
+					</Col>
+			  </Row>
 				<hr/>
 
 				<h4>Time</h4>
 				<Row>
 					<Col sm={2}>
-		        		<label>Deadline</label>
-		        	</Col>
-		        	<Col sm={8}>
-		          		<Field name="endTime" component="input" type="date"/>
-		          	</Col>
-		      	</Row>
+						<label>Deadline</label>
+					</Col>
+					<Col sm={8}>
+						<Field name="endTime" component="input" type="date"/>
+					</Col>
+				</Row>
 				<hr/>
 
 				<div>
-		        	<label>Description</label>
-		        	<div>
-		          		<Field name="description" component="textarea"/>
-		        	</div>
-		      	</div>
+					<label>Description</label>
+					<div>
+						<Field name="description" component="textarea"/>
+					</div>
+				</div>
 			</form>
 		</div>
   )

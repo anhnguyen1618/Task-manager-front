@@ -48,23 +48,27 @@ class SideModal extends React.Component {
     const { initialValues: { id, title, status, assignee, assignor, startTime, endTime, description, comments } } = this.props
     return (
       <div className="panel-content">
-			<h4>Details</h4>
-			<text>Status: {status}</text>
-			<hr/>
-			<h4>People</h4>
-			<text>Assignor: {assignor}</text>
-			<br/>
-			<text>Assignee: {assignee}</text>
-			<hr/>
-			<h4>Time</h4>
-			<text>Start time: {startTime}</text><br/>
-			<text>End time: {endTime}</text>
-			<hr/>
-			<h4>Description:</h4>
-			<text>
-				{description}
-			</text>
-		</div>
+        <h4>Details</h4>
+        <text>Status: {status}</text>
+        <hr/>
+
+        <h4>People</h4>
+        <text>Assignor: {assignor}</text>
+        <br/>
+
+        <text>Assignee: {assignee}</text>
+        <hr/>
+
+        <h4>Time</h4>
+        <text>Start time: {startTime}</text><br/>
+        <text>End time: {endTime}</text>
+        <hr/>
+
+        <h4>Description:</h4>
+        <text>
+          {description}
+        </text>
+      </div>
     )
   }
 
@@ -81,28 +85,28 @@ class SideModal extends React.Component {
 
     return (
       <div>
-	    	<div className="panel-header">
-	    		{!isAdding ? <h2>[{initialValues.id}] {initialValues.title}</h2>: <h2>ADD TASK</h2>}
-			</div>
+        <div className="panel-header">
+          {!isAdding ? <h2>[{initialValues.id}] {initialValues.title}</h2>: <h2>ADD TASK</h2>}
+        </div>
 
-			{showForm? <Form initialValues={initialValues} onSubmit={this.onSave}/> : this.renderInfo()}
+        {showForm? <Form initialValues={initialValues} onSubmit={this.onSave}/> : this.renderInfo()}
 
-			<div className="panel-footer">
-				<div className="button-group">
-	    			{!isAdding && <button type="button" disabled={!isAdmin} onClick={removeTask} className="btn btn-danger">Delete</button> }
-	    			<div className="pull-right">
-	    				<button type="button" onClick={hideSidePanel} className="btn btn-primary">Cancel</button>	
-	    				<button 
-	    					type='button'
-	    					className="btn btn-info" 
-	    					disabled={!isAdmin}
-	    					onClick={showForm ? handleSave : this.toggleEdit}>
-	    					{showForm ? 'Save' : 'Edit'}
-	    				</button>  
-	    			</div>	    			
-				</div>
-			</div>
-		</div>
+        <div className="panel-footer">
+          <div className="button-group">
+            {!isAdding && <button type="button" disabled={!isAdmin} onClick={removeTask} className="btn btn-danger">Delete</button> }
+            <div className="pull-right">
+              <button type="button" onClick={hideSidePanel} className="btn btn-primary">Cancel</button>	
+              <button 
+                type='button'
+                className="btn btn-info" 
+                disabled={!isAdmin}
+                onClick={showForm ? handleSave : this.toggleEdit}>
+                {showForm ? 'Save' : 'Edit'}
+              </button>  
+            </div>	    			
+          </div>
+        </div>
+      </div>
     )
   }
 }

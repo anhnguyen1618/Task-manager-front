@@ -33,6 +33,7 @@ export default function(WrappedPanel) {
       );
     }
   }
+  
   KeyStrokeSupport.displayName = "KeyStrokeSupport"
   KeyStrokeSupport.propTypes = {
     hideSidePanel: PropTypes.func.isRequired

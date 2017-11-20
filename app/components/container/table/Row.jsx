@@ -2,40 +2,38 @@ import React from 'react';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
 import id_generator from "uuid/v4";
-import Box from './Box.jsx'
+import classNames from 'classnames';
 
-import { updatePeople, deletePeople } from '../../redux/api.js'
-import { updatePeopleAction } from '../../redux/actions.js'
+import { updatePeople, deletePeople } from '../../../redux/api.js'
+import { updatePeopleAction } from '../../../redux/actions.js'
 
+import Box from '../../presentational/table/Box.jsx'
 
 export class Row extends React.Component {
-  static propTypes = {
-    man: React.PropTypes.object.isRequired,
-    deletePeople: React.PropTypes.func.isRequired,
-    updatePeople: React.PropTypes.func.isRequired
-  };
 
   constructor(props) {
     super(props);
-    this.state = Object.assign({}, this.props.man, { isEdited: false, isFocused: null });
+    this.state = {...this.props.man, isEdited: false, isFocused: null};
     const { userName, email, role } = this.props.man;
     this.infoObj = { userName, email, role };
   }
 
   render() {
-    const { isEdited, userName, email, role, isFocused } = this.state;
-    const passProps = { onEdit: this.onEdit, isEdited, isFocused };
-    const infos = [{ type: "userName", value: userName }, { type: "email", value: email }, { type: "role", value: role }];
+    const { isEdited, userName, email, role, isFocused } = this.state
+    const passProps = { onEdit: this.onEdit, isEdited, isFocused }
+    const infos = [{ type: "userName", value: userName }, { type: "email", value: email }, { type: "role", value: role }]
+    const editIconStyle = classNames({'glyphicon': true, 'glyphicon-pencil': true, 'isEdited': isEdited})
+
     return (
       <tr>
-            {infos.map((info, index) => <Box key={index} {...info} {...passProps} updateInfo={this.updateInfo(info.type)}/>)}
-            <td id="editor">
-                <div>
-                    <span onClick={this.onEdit("userName")} className={"glyphicon glyphicon-pencil "+(isEdited ? "isEdited" : null)}/>
-                    <span onClick={() => this.props.deletePeople(userName)} className="glyphicon glyphicon-remove"/>  
-                </div>      
-            </td>
-        </tr>
+        {infos.map((info, index) => <Box key={index} {...info} {...passProps} updateInfo={this.updateInfo(info.type)}/>)}
+        <td id="editor">
+          <div>
+            <span onClick={this.onEdit("userName")} className={editIconStyle}/>
+            <span onClick={() => this.props.deletePeople(userName)} className="glyphicon glyphicon-remove"/>  
+          </div>      
+        </td>
+      </tr>
     );
   }
 
@@ -66,6 +64,10 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
+Row.propTypes = {
+  man: React.PropTypes.object.isRequired,
+  deletePeople: React.PropTypes.func.isRequired,
+  updatePeople: React.PropTypes.func.isRequired
+}
 
 export default connect(null, mapDispatchToProps)(Row);

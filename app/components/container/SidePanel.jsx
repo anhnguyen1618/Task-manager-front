@@ -13,8 +13,8 @@ const SidePanel = (props) => {
 
   return (
     <div className={PanelClass}>
-    	{sidePaneltriggered && props.children}
-	</div>
+      {sidePaneltriggered && props.children}
+    </div>
   )
 }
 

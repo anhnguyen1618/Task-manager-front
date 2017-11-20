@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm, SubmissionError } from 'redux-form'
 import { Link } from 'react-router';
 
-import { TextInputField } from "./DumbComponents/FormField.jsx";
+import { TextInputField } from "./FormField.jsx";
 
 const validate = ({ userName, password }) => {
   const errors = {};

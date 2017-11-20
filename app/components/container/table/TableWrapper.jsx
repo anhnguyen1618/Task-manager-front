@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
-import Table from "./Table.jsx";
+import Table from "../../presentational/table/Table";
 
 class TableWrapper extends React.Component {
   static propTypes = {

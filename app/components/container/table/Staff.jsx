@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import Form from "./Form.jsx";
 import TableWrapper from "./TableWrapper.jsx";
 
-import { fetchPeople } from '../../redux/api.js';
-import { loadPeople } from '../../redux/actions.js'
+import { fetchPeople } from '../../../redux/api.js';
+import { loadPeople } from '../../../redux/actions.js'
 
 export class Staff extends React.Component {
   constructor(props) {

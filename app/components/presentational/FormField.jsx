@@ -47,8 +47,8 @@ export const RadioGroup = ({ input, ...rest }) => (
 
 export const RadioInput = ({ value, label }) => (
   <RadioButton 
-  value={value} 
-  label={label}
-  labelStyle={{color:grey50}}
+    value={value} 
+    label={label}
+    labelStyle={{color:grey50}}
   />
 )

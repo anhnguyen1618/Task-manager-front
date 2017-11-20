@@ -1,22 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 
 const TableHeader = (props) => {
   const { sort, sortCategory, sortOrder } = props;
   return (
     <thead>
       <tr>
-          {["UserName", "Email", "Role"].map((title)=>(
-            <th key={title} className={title === 'Role' ? "col-md-2": 'col-md-4'}>                        
-                <span className="title" onClick={sort(sortCategory, sortOrder, title)}>{title}</span>    
-                { title.toLowerCase() === sortCategory.toLowerCase()
-                  ? <span className={"glyphicon glyphicon-sort-by-attributes"+(sortOrder === "descending" ? "-alt" : "")}/>
-                  : <span className="glyphicon glyphicon-align-left"></span>}                                    
-            </th>
-            )
-          )}
-          <th className="col-md-2" id="edit"></th>
+        {["UserName", "Email", "Role"].map((title)=>(
+          <th key={title} className={title === 'Role' ? "col-md-2": 'col-md-4'}>                        
+            <span className="title" onClick={sort(sortCategory, sortOrder, title)}>{title}</span>    
+            { title.toLowerCase() === sortCategory.toLowerCase()
+              ? <span className={"glyphicon glyphicon-sort-by-attributes"+(sortOrder === "descending" ? "-alt" : "")}/>
+              : <span className="glyphicon glyphicon-align-left"></span>}                                    
+          </th>)
+        )}
+        <th className="col-md-2" id="edit"></th>
       </tr>
     </thead>)
 }

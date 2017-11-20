@@ -11,9 +11,9 @@ import Login from './container/LoginContainer.jsx'
 import Content from "./container/Content.jsx"
 import Main from "./container/Main.jsx";
 
-import SidePanel from "./presentational/SidePanel.jsx";
+import SidePanel from "./container/SidePanel.jsx";
 import SideModal from './container/SidePanel-modal.jsx';
-import Table from './table/Staff.jsx';
+import Table from './container/table/Staff.jsx';
 import Loader from './presentational/Loader.jsx'
 
 const App = () => {

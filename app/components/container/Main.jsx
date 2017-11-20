@@ -7,7 +7,7 @@ import { fetchTasks, fetchPeople, logout } from '../../redux/api';
 import { loadTasks, loadPeople } from '../../redux/actions'
 import { getAllUsers, getCurrentUser } from '../../redux/selectors/users';
 import { getAllTasks } from '../../redux/selectors/tasks';
-import Column from "../presentational/Column.jsx";
+import Column from "./Column.jsx";
 
 class Main extends React.Component {
   constructor(props) {
