@@ -3,7 +3,7 @@ import { loginAction, loadTasksAction, loadPeopleAction, addTasksAction,
         updateTasksAction, deleteTaskAction, addPeopleAction,
         deletePeopleAction, updatePeopleAction } from './actions'
 
-const ROOT = '/api'
+const ROOT = '/api';
 
 const getToken = () => localStorage.getItem('token')
 
@@ -66,7 +66,11 @@ export function login(data) {
 }
 
 export function logout() {
-  return axios.post(`${ROOT}/logout`)
+  return axios.get(`${ROOT}/logout`)
+  .then(res => {
+    localStorage.setItem('token', '')
+    window.location = '/'
+  })
 }
 
 export function checkUser(data) {

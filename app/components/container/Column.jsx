@@ -8,7 +8,6 @@ import { modifyTask } from "../../redux/api.js";
 
 const Column = (props) => {
   const { tasks, category, showSidePanel, changeCategory, user } = props
-  console.log(tasks);
   const filteredTasks = tasks.filter(task => task.status === category)
 
   const isAdmin = user.role === 'ADMIN'

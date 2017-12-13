@@ -27,7 +27,9 @@ class SideModal extends React.Component {
   onSave = (values) => {
     if (this.isAdding) {
       values.assignor = this.props.user.userName
-
+      values.assignee = values.assignee || this.props.users[0].userName
+      values.status = values.status || 'Todo'
+      console.log(values)
       this.props.addTask(values)
         .then(res => {
           this.props.hideSidePanel()
@@ -115,7 +117,8 @@ const mapStateToProps = (state) => {
   return {
     initialValues: getTaskbyID(state, state.tasks.selectedTask),
     user: state.users.currentUser,
-    userRole: state.users.currentUser.role
+    userRole: state.users.currentUser.role,
+    users: state.users.data
   }
 }
 

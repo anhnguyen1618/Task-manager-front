@@ -10,5 +10,5 @@ export function getSelectedTask(state) {
 }
 
 export function getTaskbyID(state, id) {
-  return state.tasks.data.filter(task => task.id.toString() === id.toString())[0]
+  return state.tasks.data.find(task => task.id.toString() === id.toString())
 }

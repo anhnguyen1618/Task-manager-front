@@ -16,7 +16,7 @@ const loginForm = props => {
   return (
     <form onSubmit={handleSubmit}>
       {error && <h2 className="error">{error}</h2>}
-      <h2><img src="static/login.png" width="50px" alt=""/>Login</h2>
+      <h2><img src="public/login.png" width="50px" alt=""/>Login</h2>
       <div>
         <Field name="userName" component={TextInputField} label="Username"/>
       </div>
@@ -25,7 +25,6 @@ const loginForm = props => {
       </div>
       <div className="button-group">
         <button type="submit" className="btn btn-primary" disabled={pristine || invalid || submitting}>{submitting ? "Submiting.." : "Submit"}</button>
-        < Link to="/register" className="btn btn-success"> FB Login! </Link>
       </div>
     </form>
   )

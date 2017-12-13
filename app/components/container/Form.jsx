@@ -37,7 +37,7 @@ const Form = (props) => {
 					</Col>
 					<Col md={8}>
 						<Field name="assignee" component="select">
-							{employees.map(({userName}) =>
+							{employees.map(({userName}, index) =>
 							<option value={userName} key={userName}>{userName}</option>)}
 						</Field>
 					</Col>
