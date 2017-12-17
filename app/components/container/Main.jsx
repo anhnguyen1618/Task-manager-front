@@ -47,7 +47,7 @@ class Main extends React.Component {
       		<center><img src="http://i.imgur.com/DLBS6e5.gif"/></center>
       	</div>)
     }
-    
+
 
     return (
       <div className="row main">
@@ -56,7 +56,7 @@ class Main extends React.Component {
       			<div className="container">
       			<img src="https://cdn2.iconfinder.com/data/icons/office-extras/512/Reminder_Note-512.png"/>
       			<div className="pull-right">
-              { currentUser.role ==='ADMIN' && < Link to = {"/employee"} className="btn btn-success">Manage employee</Link>}
+              { currentUser.role === 'ADMIN' && < Link to = {"/employee"} className="btn btn-success">Manage employee</Link>}
 	      			<button className="btn btn-default" onClick={this.logOut}>Log out</button>
       			</div>
       			</div>

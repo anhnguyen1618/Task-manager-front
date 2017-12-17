@@ -11,7 +11,7 @@ class Form extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { userName: "", email: "", role: "ROLE_ADMIN", password: "" };
+    this.state = { userName: "", email: "", role: "ADMIN", password: "" };
   }
 
   render() {
